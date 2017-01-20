@@ -3,6 +3,7 @@ import ReactDOM, { render } from 'react-dom';
 import { Link } from 'react-router';
 
 import Square from './Square.jsx';
+import Board from './Board.jsx';
 
 
 export default class App extends Component {
@@ -13,7 +14,7 @@ export default class App extends Component {
     render() {
         return (
             <div>
-                App Component
+                <Board />
             </div>
         );
     }
