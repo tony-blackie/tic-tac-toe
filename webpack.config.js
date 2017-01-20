@@ -1,11 +1,13 @@
 var path = require('path');
 var htmlWebpackPlugin = require('html-webpack-plugin');
+var ExtractTextPlugin = require("extract-text-webpack-plugin");
 
 module.exports = {
     devtool: 'cheap-module-eval-source-map',
     context: path.join(__dirname, 'src'),
     entry: {
-        app: './app/app.jsx'
+        app: './app/app.jsx',
+        index: './index.css'
     },
     output: {
         path: path.join(__dirname, 'dist'),
@@ -17,6 +19,10 @@ module.exports = {
                 test: /\.jsx$/,
                 loader: 'babel-loader',
                 include: path.join(__dirname, 'src')
+            },
+            {
+                test: /\.css$/,
+                loader: ExtractTextPlugin.extract('style-loader', 'css-loader')
             }
         ]
     },
@@ -34,6 +40,7 @@ module.exports = {
                 filename: 'index.html',
                 chunks: ['app']
             }
-        )
+        ),
+        new ExtractTextPlugin("[name].css")
     ]
 };
