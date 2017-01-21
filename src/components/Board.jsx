@@ -41,6 +41,9 @@ export default class Board extends Component {
     }
 
     makeActive(i) {
+        if (this.state.winner) {
+            return;
+        }
         let squares = Object.assign({}, this.state.squares);
         squares[i] = this.state.xIsNext ? 'X' : 'O';
         this.setState(
